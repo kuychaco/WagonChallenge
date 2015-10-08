@@ -17,7 +17,7 @@ var fs = require("fs");
 // fs.createReadStream("./test.csv").pipe(converter);
 
 
-fs.readFile('./test.csv', 'utf8', function(err, csvData) {
+fs.readFile('./data.csv', 'utf8', function(err, csvData) {
   if (err) throw err;
   // console.log(csvData);
   parse(csvData);
@@ -29,7 +29,7 @@ function parse(csvData) {
   });
 
   var result = "module.exports = " + JSON.stringify(rows);
-  fs.writeFile("test.js", result, function(err) {
+  fs.writeFile("data.js", result, function(err) {
     if (err) throw err;
     console.log("created input json");
   });
