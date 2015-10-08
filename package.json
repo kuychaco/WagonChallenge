@@ -1,0 +1,30 @@
+{
+  "name": "WagonTableUI",
+  "version": "0.0.1",
+  "devDependencies": {
+    "app-root-path": "^1.0.0",
+    "browser-sync": "2.7.12",
+    "flux": "^2.0.3",
+    "object-assign": "^3.0.0",
+    "node-libs-browser": "^0.5.2",
+    "jsx-loader": "^0.13.2"
+  },
+  "dependencies": {
+    "future-router": "^1.0.2"
+  },
+  "paths": {
+    "app": {
+      "all": "/app",
+      "main": "main.js"
+    },
+    "public": {
+      "js": {
+        "all": "/public/js",
+        "main": "main.js"
+      },
+      "assets": "public/assets",
+      "vendor": "public/vendor",
+      "index": "public/index.html"
+    }
+  }
+}
