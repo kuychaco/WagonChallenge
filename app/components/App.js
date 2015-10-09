@@ -1,27 +1,22 @@
-// var Constants = require('../constants/app_constants');
-// var Store = require('../stores/app_store');
-// var Actions = require('../actions/app_actions');
-var Table = require('./table');
+var MyTable = require('./Table');
+var AppHeader = require('./AppHeader');
 
 var WebAPIUtils = require('../utils/WebAPIUtils');
 WebAPIUtils.getData();
 
+require('../stylesheets/app.scss');
+
 var App = React.createClass({
   render () {
     return(
-      <div className="app">
-        App
-        <Table/>
+      <div>
+        <AppHeader />
+        <Panel className="app">
+          <MyTable/>
+        </Panel>
       </div>
     );
   }
 });
-
-//Inline CSS Styles(excludes hover)
-var styles ={
-  base:{
-
-  }
-}
 
 module.exports = App;

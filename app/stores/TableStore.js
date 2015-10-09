@@ -48,15 +48,15 @@ TableStore.dispatchToken = Dispatcher.register(function(payload){
       TableStore.emitChange();
       break;
   }
-
 });
 
 function loadInitialData(payload) {
+  var headers = payload.data.shift();
   data = payload.data;
-  headerNames = data[0].map(function(header) {
+  headerNames = headers.map(function(header) {
     return header.split(' ')[0].substring(1);
   });
-  headerTypes = data[0].map(function(header) {
+  headerTypes = headers.map(function(header) {
     var typeWithParens = header.split(' ')[1];
     return typeWithParens.substring(1, typeWithParens.length-2);
   });
@@ -67,33 +67,13 @@ function setFilter(payload) {
   var columnIndex = payload.columnIndex;
   var searchTerm = payload.searchTerm;
   filterTerms[columnIndex] = searchTerm;
-  // Filter functional style!
+  // Filter data
   filteredData = filterTerms.reduce((filteredData, filterTerm, index) => {
-    return (filterTerm === undefined || filterTerm === '') ? data : data.filter((row) => {
-      return row[index] === filterTerm;
+    return (filterTerm === undefined || filterTerm === '') ? filteredData : filteredData.filter((row) => {
+      return row[index] && row[index].indexOf(filterTerm) > -1;
     });
   }, data);
-  console.log('Set new filter:', columnIndex, '=', searchTerm);
+  console.log('Filtered data for: column', columnIndex, '=', searchTerm);
 }
-
-//Define Custom Actions
-// function getData(){
-//   var promise = $.ajax("http://localhost:3000/data",{dataType: 'json'});
-
-//   promise.then( function(response){
-//      Data = response.Data;
-//      TableStore.emitChange();
-//  });
-// }
-
-// function setData(){
-//   var Data ="DATA";
-//   var promise = $.post("http://localhost:3000/documents",{data: document});
-
-//   promise.then( function(response){
-//      getData();
-//      TableStore.emitChange();
-//  });
-//}
 
 module.exports = TableStore;

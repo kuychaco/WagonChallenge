@@ -2,7 +2,6 @@ var Store = require('../stores/TableStore');
 
 var TableRow = require('./TableRow');
 var TableHeader = require('./TableHeader');
-var SearchRow = require('./SearchRow');
 
 function getStateFromStores() {
   return {
@@ -10,7 +9,7 @@ function getStateFromStores() {
   };
 };
 
-var Table = React.createClass({
+var MyTable = React.createClass({
   getInitialState() {
     return getStateFromStores();
   },
@@ -24,25 +23,18 @@ var Table = React.createClass({
     this.setState(getStateFromStores());
   },
   render() {
-    console.log('render')
-    var contents = [];
-    this.state.data.forEach((rowData, i) => {
-      if (i===0) return;
-      contents.push((
-        <TableRow data={rowData} />
-      ));
+    var contents = this.state.data.map((rowData, i) => {
+      return (<TableRow key={'id-'+rowData[0]+i} data={rowData} />);
     });
 
     return(
-      <div className="table">
-        Table
-        <table>
+      <div className="table" style={styles}>
+        <Table striped bordered condensed hover>
           <TableHeader />
           <tbody>
-            <SearchRow />
             {contents}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
   }
@@ -50,9 +42,9 @@ var Table = React.createClass({
 
 //Inline CSS Styles(excludes hover)
 var styles ={
-  base:{
-
+  table:{
+    margin: 'auto'
   }
 }
 
-module.exports = Table;
+module.exports = MyTable;

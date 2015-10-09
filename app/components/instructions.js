@@ -8,28 +8,28 @@ class App extends React.Component{
 
   render(){
     return(
-      <div>        
+      <div>
         <Jumbotron style={styles.jumbo}>
           <Row style={styles.row}>
             <img src="assets/images/mtn.png" className="col-md-1"/>
             <h1 className="col-md-10">Welcome to React-Flux-Starter-Kit</h1>
             <img src="assets/images/mtn.png" className="col-md-1"/>
           </Row>
-        </Jumbotron> 
+        </Jumbotron>
         <Row  style={css(styles.body,styles.row)}>
           <h1 className="text-center">Using the Starter Kit</h1>
           <hr />
           <div className="col-md-3"></div>
           <div className="col-md-6" style={styles.display} >
-            <h2>App Folder</h2> 
+            <h2>App Folder</h2>
             <h3>Components</h3>
             <p>All React Components Should go into this folder. To generate a React component you can use the installed mtn
               CLI:<br/><br/>
               <span style={styles.code}>mtn dew component [NameInCapCase] [-c]</span> <br/><br/>
-              in the folder you want the component to be created in. Running the 
-              command with a 
-              <span style={styles.code}>-c</span> 
-              at the end will generate a component with additional comments for starting out. Another 
+              in the folder you want the component to be created in. Running the
+              command with a
+              <span style={styles.code}>-c</span>
+              at the end will generate a component with additional comments for starting out. Another
               additional feature of the starter kit is a simple way to combine multiple style objects on a react component.
               We implement a function called css which can be use as follows: <br/><br/> <span style={styles.code}> {raw} </span><br/><br/>
               It also has many modules globally accessible such as:
@@ -39,9 +39,9 @@ class App extends React.Component{
             <p>
               The Starter Kit holds a convention on how you should use flux and provides some nice generator commands to help
               build a flux architecture very quickly. Just like with generating a component you can generate flux files quickly.
-              <br/><br/><span style={styles.code}>mtn dew flux [NameInCapCase] [-c]</span> <br/><br/> Again you can include the 
+              <br/><br/><span style={styles.code}>mtn dew flux [NameInCapCase] [-c]</span> <br/><br/> Again you can include the
               <span style={styles.code}>-c</span> argument to generate with additional comments.
-              It generates 4 files 
+              It generates 4 files
               using underscored_names for the files and CapCase names for the modules and has them properly linked together:
               <ol><li>[name]_actions.js</li><li>[name]_constants.js</li><li>[name]_dispatcher.js</li><li>[name]_store.js</li></ol>
             </p>
@@ -49,8 +49,8 @@ class App extends React.Component{
             <p>
               The Starter Kit comes built in with a router call future-router. It is a simple router that is supposed to help
               facilitate keeping state and transitioning easily between states. The router is located in app/router.js. It watches
-              any changes to the window location and will invoke the corresponding route. This allows you to create a href with 
-              the url to navigate to or you can dynamically invoke a route. Since generating the href url can be tedious, there is an 
+              any changes to the window location and will invoke the corresponding route. This allows you to create a href with
+              the url to navigate to or you can dynamically invoke a route. Since generating the href url can be tedious, there is an
               easy way to generate the url in a href attribute. Here's how you can go about using it:<br/><br/>
               <ol>
                 <li>First create the route definition in router.js. You must include the root route as this is the entry point to the site.
@@ -67,10 +67,10 @@ class App extends React.Component{
                   <span style={styles.code}>Router.route('nameOfRoute',{"{argsOBJ: 'args'}"},true)</span>
                 </li>
               </ol>
-            </p>            
-          </div> 
-          <div className="col-md-3"></div>          
-        </Row>   
+            </p>
+          </div>
+          <div className="col-md-3"></div>
+        </Row>
         <Row style={css(styles.row)}>
           <h1 className="text-center">What now?</h1>
           <hr />
@@ -79,7 +79,7 @@ class App extends React.Component{
             <h1>Replace app.js</h1>
             <p>This start page's source code is currently app.js. I would recommend replacing it by deleting it and running <br/><br/>
             <span style={styles.code}>mtn dew component App</span> <br/> <br/>
-            I would also like to note that it is not written in the way you should write a react application as it is not broken down into components for the sake of only having to delete 
+            I would also like to note that it is not written in the way you should write a react application as it is not broken down into components for the sake of only having to delete
             a single file rather than several.
             </p>
             <h1>Useful Links</h1>

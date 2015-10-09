@@ -1,0 +1,32 @@
+body {
+  margin: auto;
+  font-family: Lato, sans-serif !important;
+}
+
+td, th {
+  padding-left: 1em !important;
+}
+
+input {
+  border: none !important;
+  margin-left: 1em;
+  font-weight: normal;
+}
+
+.navbar {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.navbar-logo {
+  background-image: url(https://www.wagonhq.com/images/logo-mono.png);
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 61px 30px;
+  display: inline;
+  margin-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 31px;
+  padding-right: 30px;
+  padding-top: 15px;
+}

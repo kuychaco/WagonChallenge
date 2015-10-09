@@ -4,21 +4,12 @@ var Actions = require('../actions/TableActions');
 
 var TableRow = React.createClass({
   render () {
-    var contents = this.props.data.map((data) => {
-      return (<td> {data} </td>);
+    var data = this.props.data;
+    var contents = data.map((value, index) => {
+      return (<td key={value+index}> {value} </td>);
     });
-    return (
-      <div className="tableRow">
-        <tr> {contents} </tr>
-      </div>
-    );
+    return (<tr> {contents} </tr>);
   }
 });
-
-var styles ={
-  base:{
-
-  }
-}
 
 module.exports = TableRow;
