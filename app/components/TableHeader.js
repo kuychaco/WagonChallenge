@@ -1,7 +1,5 @@
 var Actions = require('../actions/TableActions');
 var Store = require('../stores/TableStore');
-var _ = require('underscore');
-
 
 function getStateFromStores() {
   return {
@@ -35,7 +33,8 @@ var TableHeader = React.createClass({
     return (
       <div className="tableHeader">
         <thead>
-          <tr> {contents} </tr> </thead>
+          <tr> {contents} </tr>
+        </thead>
       </div>
     )
   }

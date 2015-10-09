@@ -3,6 +3,8 @@ var EventEmitter = require('events').EventEmitter;
 var Constants = require('../constants/TableConstants');
 var assign = require('object-assign');
 
+var _ = require('lodash');
+
 var CHANGE_EVENT = 'change';
 
 var headerNames = [];
@@ -10,7 +12,8 @@ var headerTypes = [];
 var originalData = [];
 var filterTerms = [];
 var filteredData = [];
-var pageRowsByType = {};
+// var filteredSet = null;
+// var pageRowsByType = {};
 
 
 //Listeners and Getters
@@ -44,6 +47,11 @@ TableStore.dispatchToken = Dispatcher.register(function(payload){
       TableStore.emitChange();
       break;
 
+    case Constants.SET_PAGE_FILTER:
+      filterByPageType(payload.pageType);
+      TableStore.emitChange();
+      break;
+
     case Constants.SET_FILTER:
       setFilter(payload);
       TableStore.emitChange();
@@ -53,13 +61,13 @@ TableStore.dispatchToken = Dispatcher.register(function(payload){
 
 function loadInitialData(payload) {
   var data = payload.data;
-  data.forEach((row, index) => {
+  _.forEach(data, (row, index) => {
     if (index === 0) { headers = row; return; }
-    if (!pageRowsByType[row[1]]) pageRowsByType[row[1]] = [];
-    pageRowsByType[row[1]].push(index);
-
+    // if (!pageRowsByType[row[1]]) pageRowsByType[row[1]] = new Set();
+    // pageRowsByType[row[1]].add(index);
     originalData.push(row);
   });
+  // console.log(Object.keys(pageRowsByType));
   // check if last row is empty
   if (data[data.length-1].length < 4) data.pop();
   var headers = data[0];
@@ -78,12 +86,31 @@ function setFilter(payload) {
   var searchTerm = payload.searchTerm;
   filterTerms[columnIndex] = searchTerm;
   // Filter data
-  filteredData = filterTerms.reduce((filteredData, filterTerm, index) => {
-    return (filterTerm === undefined) ? filteredData : filteredData.filter((row) => {
+  filteredData = _.reduce(filterTerms, (filteredData, filterTerm, index) => {
+    return (filterTerm === undefined) ? filteredData : _.filter(filteredData, (row) => {
       return row[index] && row[index].indexOf(filterTerm) > -1;
     });
-  }, data);
+  }, originalData);
   console.log('Filtered data for: column', columnIndex, '=', searchTerm);
 }
+
+// function filterByPageType(pageType) {
+//   if (filteredSet === null) {
+//     filteredSet = pageRowsByType[pageType]
+//   }
+//   else {
+//   }
+//   filteredData = filterByPageType[pageType];
+// }
+//
+// function filterByRange(column, min, max) {
+//
+// }
+//
+// function filterBySessionID(value) {
+//
+// }
+
+
 
 module.exports = TableStore;
