@@ -7,9 +7,10 @@ var CHANGE_EVENT = 'change';
 
 var headerNames = [];
 var headerTypes = [];
-var data = [];
+var originalData = [];
 var filterTerms = [];
 var filteredData = [];
+var pageRowsByType = {};
 
 
 //Listeners and Getters
@@ -24,7 +25,7 @@ var TableStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
   getData: function() {
-    if (filterTerms.length === 0) return data;
+    if (filterTerms.length === 0) return originalData;
     return filteredData;
   },
   getHeaderNames: function() {
@@ -51,9 +52,17 @@ TableStore.dispatchToken = Dispatcher.register(function(payload){
 });
 
 function loadInitialData(payload) {
-  var headers = payload.data.shift();
-  data = payload.data;
+  var data = payload.data;
+  data.forEach((row, index) => {
+    if (index === 0) { headers = row; return; }
+    if (!pageRowsByType[row[1]]) pageRowsByType[row[1]] = [];
+    pageRowsByType[row[1]].push(index);
+
+    originalData.push(row);
+  });
+  // check if last row is empty
   if (data[data.length-1].length < 4) data.pop();
+  var headers = data[0];
   headerNames = headers.map(function(header) {
     return header.split(' ')[0].substring(1);
   });
