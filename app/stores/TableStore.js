@@ -53,6 +53,7 @@ TableStore.dispatchToken = Dispatcher.register(function(payload){
 function loadInitialData(payload) {
   var headers = payload.data.shift();
   data = payload.data;
+  if (data[data.length-1].length < 4) data.pop();
   headerNames = headers.map(function(header) {
     return header.split(' ')[0].substring(1);
   });
@@ -69,7 +70,7 @@ function setFilter(payload) {
   filterTerms[columnIndex] = searchTerm;
   // Filter data
   filteredData = filterTerms.reduce((filteredData, filterTerm, index) => {
-    return (filterTerm === undefined || filterTerm === '') ? filteredData : filteredData.filter((row) => {
+    return (filterTerm === undefined) ? filteredData : filteredData.filter((row) => {
       return row[index] && row[index].indexOf(filterTerm) > -1;
     });
   }, data);

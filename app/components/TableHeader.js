@@ -15,15 +15,21 @@ var TableHeader = React.createClass({
   },
   handleKeyUp (columnIndex, e) {
     var searchTerm = React.findDOMNode(this.refs[columnIndex]).value.trim();
-    Actions.setFilter(columnIndex, searchTerm);
-    console.log('Filter for', searchTerm);
+    if (e.which === 13) {
+      Actions.setFilter(columnIndex, searchTerm);
+      console.log('Filter for', searchTerm, 'in column', columnIndex);
+    }
+    else if (e.which === 8 && searchTerm.length === 0) {
+      Actions.setFilter(columnIndex, undefined);
+      console.log('Clear filter for column', columnIndex);
+    }
   },
   render () {
     var contents = this.state.headerNames.map((header, columnIndex) => {
       return (
         <th key={header}>
           {header.toUpperCase()}
-          <input type="text" placeholder="search" ref={columnIndex} onKeyUp={_.debounce(this.handleKeyUp.bind(this, columnIndex), 200)} />
+          <input type="text" placeholder="search" ref={columnIndex} onKeyUp={this.handleKeyUp.bind(this, columnIndex)} />
         </th>);
     });
     return (
