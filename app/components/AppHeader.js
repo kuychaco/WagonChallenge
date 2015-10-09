@@ -12,19 +12,19 @@ var AppHeader = React.createClass({
               <span className="icon-bar"></span>
             </button>
 
-            <a href="/">
+            <a href="https://www.wagonhq.com" target="_blank">
             <span className="navbar-brand">
             <div className="navbar-logo"></div>
-            <span>Wagon Challenge</span>
+            <span>Wagon </span>
             </span>
             </a>
           </div>
 
           <div className="collapse navbar-collapse" id="wagon-navbar-collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="linkedin.com/in/katrinauychaco">About</a></li>
-              <li><a href="g​ithub.com/kuychaco">GitHub</a></li>
-              <li><a href="https://medium.com/@katrinauychaco/demystify-backbone-js-series-introduction-736ee355cb08">Blog</a></li>
+              <li><a href="https://linkedin.com/in/katrinauychaco" target="_blank">About</a></li>
+              <li><a href="https://g​ithub.com/kuychaco" target="_blank">GitHub</a></li>
+              <li><a href="https://medium.com/@katrinauychaco" target="_blank">Blog</a></li>
             </ul>
           </div>
         </div>

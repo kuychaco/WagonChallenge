@@ -11,6 +11,7 @@ var App = React.createClass({
     return(
       <div>
         <AppHeader />
+        <h2> Wagon Programming Challenge </h2>
         <Panel className="app">
           <MyTable/>
         </Panel>
